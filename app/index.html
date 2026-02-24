@@ -1,61 +1,200 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraFix Suite - Interface Preview</title>
     <style>
+        :root {
+            --mac-blue: #007aff;
+            --mac-bg: #1e1e1e;
+            --sidebar-bg: rgba(0, 0, 0, 0.3);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --danger-red: #ff3b30;
+        }
+
         body {
             margin: 0;
+            padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: rgba(30, 30, 30, 0.8); /* Mac Dark Mode Glass */
+            background-color: var(--mac-bg);
             color: white;
             display: flex;
             height: 100vh;
             overflow: hidden;
+            -webkit-font-smoothing: antialiased;
         }
+
+        /* Sidebar Styling */
         .sidebar {
-            width: 200px;
-            background: rgba(0, 0, 0, 0.3);
-            padding-top: 40px; /* Space for Mac buttons */
+            width: 240px;
+            background: var(--sidebar-bg);
             border-right: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            padding-top: 50px; /* Space for Mac traffic lights */
         }
+
+        .sidebar-item {
+            padding: 12px 20px;
+            margin: 4px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-item.active {
+            background: var(--mac-blue);
+            color: white;
+        }
+
+        .sidebar-group-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            margin: 20px 0 8px 25px;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content Styling */
         .main-content {
             flex: 1;
-            padding: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            background: radial-gradient(circle at center, #2c2c2c 0%, #1e1e1e 100%);
+            padding: 40px;
         }
-        .status-dot {
-            width: 12px;
-            height: 12px;
-            background: #ff3b30; /* Red for disconnected */
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
+
+        h1 {
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
         }
-        .device-info {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 12px;
-            width: 80%;
+
+        /* Device Status Card */
+        .device-info-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 18px;
+            width: 100%;
+            max-width: 500px;
             text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--danger-red);
+            border-radius: 50%;
+            margin-right: 12px;
+            box-shadow: 0 0 0 rgba(255, 59, 48, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 59, 48, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); }
+        }
+
+        .status-text {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .hint-text {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 10px;
+        }
+
+        /* Action Buttons Grid */
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
         }
     </style>
 </head>
 <body>
+
     <div class="sidebar">
-        <ul style="list-style: none; padding-left: 20px;">
-            <li>Dashboard</li>
-            <li style="margin-top: 20px; opacity: 0.5;">Repair Tools</li>
-            <li style="margin-top: 10px; opacity: 0.5;">Device Info</li>
-        </ul>
+        <div class="sidebar-item active">📊 Dashboard</div>
+        
+        <div class="sidebar-group-label">Repair Operations</div>
+        <div class="sidebar-item">🔧 Serial Sync</div>
+        <div class="sidebar-item">🔋 Battery Health</div>
+        <div class="sidebar-item">🔓 Cloud Bypass</div>
+        
+        <div class="sidebar-group-label">System</div>
+        <div class="sidebar-item">📄 Device Logs</div>
+        <div class="sidebar-item">⚙️ Settings</div>
     </div>
+
     <div class="main-content">
         <h1>AuraFix Suite</h1>
-        <div class="device-info">
-            <p><span class="status-dot"></span> No Device Detected</p>
-            <p style="font-size: 12px; opacity: 0.6;">Connect a device via USB to start</p>
+        
+        <div class="device-info-card">
+            <div class="status-container">
+                <div class="status-dot"></div>
+                <div class="status-text">Disconnected</div>
+            </div>
+            <p class="hint-text">Waiting for USB connection (DFU, EDL, or ADB mode)...</p>
+            
+            <div class="action-grid">
+                <button class="btn" disabled>Read Info</button>
+                <button class="btn" disabled>Reboot to Normal</button>
+                <button class="btn" disabled>Sync Serial</button>
+                <button class="btn" disabled>Enter Diag Mode</button>
+            </div>
         </div>
+
+        <p style="margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.3);">
+            AuraFix Core v1.0.0-alpha | Designed for Professional Labs
+        </p>
     </div>
+
 </body>
 </html>
