@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: rgba(30, 30, 30, 0.8); /* Mac Dark Mode Glass */
+            color: white;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .sidebar {
+            width: 200px;
+            background: rgba(0, 0, 0, 0.3);
+            padding-top: 40px; /* Space for Mac buttons */
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background: #ff3b30; /* Red for disconnected */
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .device-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            width: 80%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul style="list-style: none; padding-left: 20px;">
+            <li>Dashboard</li>
+            <li style="margin-top: 20px; opacity: 0.5;">Repair Tools</li>
+            <li style="margin-top: 10px; opacity: 0.5;">Device Info</li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h1>AuraFix Suite</h1>
+        <div class="device-info">
+            <p><span class="status-dot"></span> No Device Detected</p>
+            <p style="font-size: 12px; opacity: 0.6;">Connect a device via USB to start</p>
+        </div>
+    </div>
+</body>
+</html>
