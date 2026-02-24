@@ -1,0 +1,9 @@
+{
+  "name": "aurafix-suite-ui",
+  "version": "1.0.0",
+  "description": "Mac-style UI for AuraFix Suite",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^latest"
+  }
+}
