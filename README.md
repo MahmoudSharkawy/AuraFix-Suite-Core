@@ -1,48 +1,49 @@
-# 🛡️ AuraFix Suite | The Intelligent Software Lab
+# 📱 AuraFix Suite Core
 
-![Project Status](https://img.shields.io/badge/Status-Development-orange?style=for-the-badge)
-![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
-![Platform](https://img.shields.io/badge/Platform-macOS%20|%20Windows-blue?style=for-the-badge)
+<p align="center">
+  <img src="assets/S260224-0626232.png" width="800" alt="AuraFix Suite Interface">
+</p>
 
-**AuraFix Suite** is a next-generation software diagnostic and repair ecosystem for smart devices. Specifically engineered for the premium New York market, it bridges the gap between expert hardware knowledge and cutting-edge software automation.
-
----
-
-## 🚀 Strategic Vision
-To transform decades of manual repair expertise into an **Autonomous Software Engine** capable of diagnosing and fixing complex software failures with a single click, providing elite solutions beyond official warranty constraints.
-
-## ✨ Core Modules
-
-### 1. 🧬 Serial Sync Engine
-* **Parts Pairing Resolution:** Automated matching of serial numbers for replaced components (Screens, Cameras, FaceID).
-* **System Integrity Restoration:** Fixing "Unknown Part" messages in modern OS environments.
-
-### 2. ⚡ PowerLab Pro
-* **Cycle Count Management:** Programmatic resetting of battery cycle counts after cell replacement.
-* **Health Recalibration:** Deep firmware-level calibration of Battery Health percentages.
-
-### 3. 🔓 Cloud-Bypass Gateway
-* **Enterprise Security Management:** Safe removal of MDM, iCloud, and Google Lock profiles.
-* **Multi-Mode Access:** Comprehensive support for EDL (Qualcomm), DFU (Apple), and Fastboot modes across all major chipsets.
+<div align="center">
+  <h3>Professional Device Repair & Cloud Diagnostic Tool</h3>
+  <p>Designed for high-end repair labs with a sleek macOS-inspired interface.</p>
+</div>
 
 ---
 
-## 💻 Technical Stack
+## 🎨 Visual Preview & Interface
+The interface is built using **Electron** and **Web Technologies**, featuring a deep charcoal and translucent background to match the professional aesthetics of macOS.
 
-* **Core Engine:** `Rust` / `C++` (Low-level USB communication for maximum speed and hardware stability).
-* **UI/UX:** `Electron.js` (A minimalist, high-fidelity interface inspired by macOS design language).
-* **Backend:** `Laravel` (Handling encrypted licensing, remote logic execution, and user management).
-* **Security:** `VMProtect` + `Anti-Debugging` (Multi-layered protection against reverse engineering and cracking).
+### Key Visual Features:
+* **Frosted Glass Effect:** Modern translucency in the sidebar and main cards.
+* **Dynamic Status Indicator:** A pulsing red dot to indicate real-time USB scanning.
+* **Cloud-Ready Dashboard:** Integrated IMEI/Serial identifier that operates independently of USB connection.
 
 ---
 
-## 🛠 Repository Structure
+## 🚀 Project Architecture
+The project is organized into modular directories to separate the engine logic from the user interface:
 
-```text
-├── src/
-│   ├── main_engine/      # Low-level hardware communication (C++/Rust)
-│   ├── ui_mac_style/     # Frontend interface (React/Electron)
-│   └── cloud_bridge/     # Encrypted API layer for sensitive operations
-├── docs/
-│   └── architecture/     # UI Mockups and technical workflows
-└── scripts/              # Automation and diagnostic utility scripts
+* **`/app`**: Contains the Electron UI, HTML, and CSS assets.
+* **`/core`**: Housing the C++/Rust hardware communication layers.
+* **`/assets`**: Project documentation and interface screenshots.
+
+---
+
+## 🛠️ Current Capabilities
+* [x] **Interface Shell:** Fully responsive macOS-style dashboard.
+* [x] **Cloud Identifier:** Manual Serial/IMEI analysis module.
+* [ ] **USB Handshake:** Implementing libusb for DFU/EDL detection (In Progress).
+* [ ] **Kernel Communication:** Direct chipset command protocols (Coming Soon).
+
+---
+
+## 🛡️ License
+**Proprietary License** This software is the intellectual property of **AuraFix Organization**. All rights reserved. Unauthorized copying or distribution of this code is strictly prohibited.
+
+---
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-macOS%20%7C%20Windows-blue?style=for-the-badge" alt="Platform Support">
+  <img src="https://img.shields.io/badge/Status-Alpha%20v1.0.0-orange?style=for-the-badge" alt="Project Status">
+</p>
