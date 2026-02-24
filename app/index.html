@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AuraFix Suite - Interface Preview</title>
+    <title>AuraFix Suite - Professional Lab Interface</title>
     <style>
         :root {
             --mac-blue: #007aff;
             --mac-bg: #1e1e1e;
-            --sidebar-bg: rgba(0, 0, 0, 0.3);
+            --sidebar-bg: rgba(0, 0, 0, 0.4);
             --card-bg: rgba(255, 255, 255, 0.05);
             --danger-red: #ff3b30;
+            --success-green: #34c759;
         }
 
         body {
@@ -32,7 +33,7 @@
             border-right: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
-            padding-top: 50px; /* Space for Mac traffic lights */
+            padding-top: 50px;
         }
 
         .sidebar-item {
@@ -40,7 +41,7 @@
             margin: 4px 12px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
@@ -52,51 +53,53 @@
 
         .sidebar-item.active {
             background: var(--mac-blue);
-            color: white;
         }
 
         .sidebar-group-label {
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.3);
             margin: 20px 0 8px 25px;
             letter-spacing: 1px;
         }
 
-        /* Main Content Styling */
+        /* Main Content */
         .main-content {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at center, #2c2c2c 0%, #1e1e1e 100%);
             padding: 40px;
+            overflow-y: auto;
+            background: radial-gradient(circle at center, #2c2c2c 0%, #1e1e1e 100%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
         }
 
         h1 {
+            text-align: center;
             font-weight: 600;
-            margin-bottom: 30px;
-            letter-spacing: -0.5px;
+            margin-bottom: 40px;
         }
 
         /* Device Status Card */
-        .device-info-card {
+        .card {
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px;
+            padding: 25px;
             border-radius: 18px;
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
-            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+            backdrop-filter: blur(15px);
         }
 
-        .status-container {
+        .status-header {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .status-dot {
@@ -105,7 +108,6 @@
             background: var(--danger-red);
             border-radius: 50%;
             margin-right: 12px;
-            box-shadow: 0 0 0 rgba(255, 59, 48, 0.4);
             animation: pulse 2s infinite;
         }
 
@@ -115,46 +117,65 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); }
         }
 
-        .status-text {
-            font-size: 18px;
-            font-weight: 500;
+        /* Input & Form Styling */
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        .hint-text {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 10px;
+        input[type="text"] {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 10px;
+            color: white;
+            outline: none;
         }
 
-        /* Action Buttons Grid */
-        .action-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 30px;
-            width: 100%;
-            max-width: 400px;
+        input[type="text"]:focus {
+            border-color: var(--mac-blue);
         }
 
         .btn {
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: white;
-            padding: 12px;
+            padding: 12px 20px;
             border-radius: 10px;
             font-size: 13px;
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
+        .btn-primary {
+            background: var(--mac-blue);
+            border: none;
         }
 
-        .btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
+        .btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-primary:hover {
+            background: #0063cc;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .label-blue {
+            color: var(--mac-blue);
+            font-size: 12px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -163,37 +184,52 @@
     <div class="sidebar">
         <div class="sidebar-item active">📊 Dashboard</div>
         
-        <div class="sidebar-group-label">Repair Operations</div>
+        <div class="sidebar-group-label">Local Operations</div>
         <div class="sidebar-item">🔧 Serial Sync</div>
         <div class="sidebar-item">🔋 Battery Health</div>
         <div class="sidebar-item">🔓 Cloud Bypass</div>
         
-        <div class="sidebar-group-label">System</div>
-        <div class="sidebar-item">📄 Device Logs</div>
-        <div class="sidebar-item">⚙️ Settings</div>
+        <div class="sidebar-group-label">Cloud Services</div>
+        <div class="sidebar-item">🔍 IMEI Checker</div>
+        <div class="sidebar-item">🌍 Remote Unlock</div>
+        <div class="sidebar-item">📄 History</div>
     </div>
 
     <div class="main-content">
-        <h1>AuraFix Suite</h1>
-        
-        <div class="device-info-card">
-            <div class="status-container">
-                <div class="status-dot"></div>
-                <div class="status-text">Disconnected</div>
-            </div>
-            <p class="hint-text">Waiting for USB connection (DFU, EDL, or ADB mode)...</p>
-            
-            <div class="action-grid">
-                <button class="btn" disabled>Read Info</button>
-                <button class="btn" disabled>Reboot to Normal</button>
-                <button class="btn" disabled>Sync Serial</button>
-                <button class="btn" disabled>Enter Diag Mode</button>
-            </div>
-        </div>
+        <div class="container">
+            <h1>AuraFix Suite</h1>
 
-        <p style="margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.3);">
-            AuraFix Core v1.0.0-alpha | Designed for Professional Labs
-        </p>
+            <div class="card">
+                <div class="status-header">
+                    <div class="status-dot"></div>
+                    <span style="font-weight: 500;">Device Disconnected</span>
+                </div>
+                <div class="grid-2">
+                    <button class="btn" disabled>Read Device Info</button>
+                    <button class="btn" disabled>Exit Recovery</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <span class="label-blue">🔍 MANUAL IDENTIFIER (CLOUD)</span>
+                <p style="font-size: 12px; opacity: 0.6; margin-bottom: 15px;">
+                    Check warranty, GSX status, or iCloud info via Serial/IMEI.
+                </p>
+                <div class="search-box">
+                    <input type="text" placeholder="Enter IMEI or Serial Number...">
+                    <button class="btn btn-primary">Analyze</button>
+                </div>
+                
+                <div class="grid-2" style="margin-top: 20px;">
+                    <button class="btn">🛠 Order Remote Service</button>
+                    <button class="btn">🛡️ Token Activation</button>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 30px;">
+                AuraFix Engine v1.0.0-alpha | Secured by Proprietary Encryption
+            </p>
+        </div>
     </div>
 
 </body>
